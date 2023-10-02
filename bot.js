@@ -7,7 +7,8 @@ const twitchOptions = {
     password: BOT_TOKEN
   },
   channels: [
-    "joeybtv"
+    "joeybtv",
+    "shocknoble"
   ]
 };
 
@@ -24,6 +25,6 @@ twitchClient.connect().then(res => {
 
 twitchClient.on("message", function (from, context, message, self) {
   if (self) return;
-  if (context.username == 'joeybtv') twitchClient.say(from, 'joeybtRun');
+  if (context.username == 'joeybtv') twitchClient.say(from, 'munch x' + (Math.floor(Math.random() * 100 + 1)) + ' joeybtRun PIPLUPMOVIN');
 
 });
