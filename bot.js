@@ -18,7 +18,7 @@ const twitchClient = new tmi.client(twitchOptions);
 twitchClient.connect().then(res => {
   twitchClient.join("#joeybottv").then(res => {
     console.log("joeybtv's chat has been joined!");
-    console.log(data[100]);
+    console.log(data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, ''));
 
   });
 });
@@ -26,6 +26,6 @@ twitchClient.connect().then(res => {
 
 twitchClient.on("message", function (from, context, message, self) {
   if (self) return;
-  if (context.username == 'joeybtv') twitchClient.say(from, 'munch x' + (Math.floor(Math.random() * 100 + 1)) + ' joeybtRun PIPLUPMOVIN');
+  if (context.username == 'joeybtv' && message == '?fact') twitchClient.say(from, 'joeybtRun & PIPLUPMOVIN can totally beat ' + data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '') + ' & ' + data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '') + ' in a battle arlNodders');
 
 });
