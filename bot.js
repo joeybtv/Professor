@@ -12,6 +12,8 @@ const twitchOptions = {
   ]
 };
 
+// use either Brain.js or NLP.js, most likely NLP
+
 const tmi = require('tmi.js');
 const twitchClient = new tmi.client(twitchOptions);
 
@@ -25,7 +27,13 @@ twitchClient.connect().then(res => {
 
 
 twitchClient.on("message", function (from, context, message, self) {
-  if (self) return;
-  if (context.username == 'joeybtv' && message == '?fact') twitchClient.say(from, 'joeybtRun & PIPLUPMOVIN can totally beat ' + data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '') + ' & ' + data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '') + ' in a battle arlNodders');
+  if (self || !message.startsWith('?')) return;
+  
+  const args = message.slice(1).split(' ');
+	const command = args.shift().toLowerCase();
+
+  if (command === 'fact') twitchClient.say(from, 'joeybtRun can totally beat ' + randomPokemon + ' in a battle');
 
 });
+
+randomPokemon = data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '') + ' & ' + data[(Math.floor(Math.random() * data.length + 1))]['Pokemon Name'].replace(/"/g, '');
